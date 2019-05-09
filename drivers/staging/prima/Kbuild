@@ -762,8 +762,17 @@ endif
 # Cflags for GCC and Clang
 ifeq ($(cc-name),clang)
 EXTRA_CFLAGS += -Wno-uninitialized -Wno-unused-variable
+# Supress clang warning
+subdir-ccflags-y += \
+	-Wno-uninitialized \
+	-Wno-array-bounds \
+	-Wno-empty-body \
+	-Wno-enum-conversion \
+	-Wno-non-literal-null-conversion \
+	-Wno-parentheses-equality \
+	-Wno-typedef-redefinition
 else
-EXTRA_CFLAGS += -Wno-maybe-unitialized -Wno-unused-function -Wno-unused-variable
+EXTRA_CFLAGS += -Wno-unused-function -Wno-unused-variable -Wno-switch-unreachable
 endif
 
 ifeq ($(CONFIG_WLAN_OFFLOAD_PACKETS),y)
