@@ -2463,7 +2463,8 @@ static void smb358_external_power_changed(struct power_supply *psy)
 	union power_supply_propval prop = {0,};
 	int rc, current_limit = 0;
 	int vol;
-
+	int chrg_current;
+     
 	dump_regs(chip);
 	vol = smb358_get_prop_battery_voltage_now(chip);
 	pr_debug("batt_vol = %d\n", vol);
@@ -2474,6 +2475,7 @@ static void smb358_external_power_changed(struct power_supply *psy)
 
 	rc = chip->usb_psy->get_property(chip->usb_psy,
 				POWER_SUPPLY_PROP_CURRENT_MAX, &prop);
+	chrg_current = get_prop_current_now(chip);			
 	if (rc)
 		dev_err(chip->dev,
 			"Couldn't read USB current_max property, rc=%d\n", rc);
@@ -2488,13 +2490,13 @@ static void smb358_external_power_changed(struct power_supply *psy)
                  if ((prop.intval / 1000) == 500)
 		 {
 		    // Raise USB-Charging Current (mA) to 1000 mA (Maximum Supported).
-                    pr_info("Using USB Current (mA) %d", 1000);
+                    pr_info("Using USB Current (mA) %d\n", chrg_current);
                     current_limit = 1000;
                  }
                  else
 	         {
-                     pr_info("Using AC Charge Current (mA) %d", 1250);
-                     current_limit = 1250;
+                     pr_info("Using AC Charge Current (mA) %d\n", chrg_current);
+                     current_limit = 2000;
                  }
               }
               else
