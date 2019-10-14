@@ -3322,7 +3322,7 @@ static void kswapd_try_to_sleep(pg_data_t *pgdat, int order, int classzone_idx)
 
 	/* Try to sleep for a short interval */
 	if (prepare_kswapd_sleep(pgdat, order, remaining,
-						balanced_classzone_idx)) {
+						classzone_idx)) {
 		simple_lmk_stop_reclaim();
 
 		remaining = schedule_timeout(HZ/10);
