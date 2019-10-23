@@ -18,6 +18,5 @@ blocks:
       - name: Compile Kernel
         commands:
           - checkout
-          - install-package bc
           - wget https://raw.githubusercontent.com/z4nyx/scripts/master/rolex/semaphore
           - bash semaphore
