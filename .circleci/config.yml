@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+  compile:
+    docker:
+      - image: z4nyx/amethyst:latest
+    steps:
+      - run: apt-get -y update && apt-get -y upgrade
+      - run: git clone https://github.com/z4nyx/android_kernel_xiaomi_msm8917 --depth=1 -b lineage-17.0 .
+      - run: wget https://raw.githubusercontent.com/z4nyx/scripts/master/rolex/circle-q
+      - run: chmod +x circle-q
+      - run: bash circle-q
+
+workflows:
+  version: 2.1
+  cooking:
+    jobs:
+      - compile
