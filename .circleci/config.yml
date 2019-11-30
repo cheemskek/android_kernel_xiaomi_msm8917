@@ -5,7 +5,7 @@ jobs:
       - image: z4nyx/lightborn:latest
     steps:
       - run: apt-get -y update && apt-get -y upgrade
-      - run: git clone https://github.com/z4nyx/android_kernel_xiaomi_msm8917 --depth=1 -b lineage-17.0 .
+      - run: git clone https://github.com/z4nyx/android_kernel_xiaomi_msm8917 --depth=1 -b hitotsu .
       - run: wget https://raw.githubusercontent.com/z4nyx/scripts/master/rolex/circle
       - run: chmod +x circle
       - run: bash circle
