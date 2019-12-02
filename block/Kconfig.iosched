@@ -76,6 +76,7 @@ choice
 	config DEFAULT_NOOP
 		bool "No-op"
 
+endchoice
 
 config DEFAULT_IOSCHED
 	string
