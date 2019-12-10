@@ -1232,8 +1232,6 @@ static int smb358_get_prop_batt_capacity(struct smb358_charger *chip)
 
 static int get_prop_current_now(struct smb358_charger *chip)
 {
-        int chrg_current;
-        chrg_current = get_prop_current_now(chip);
 	union power_supply_propval ret = {0,};
 	if (chip->bms_psy) {
 		chip->bms_psy->get_property(chip->bms_psy,
@@ -1243,7 +1241,7 @@ static int get_prop_current_now(struct smb358_charger *chip)
 		} else {
 			pr_debug("No BMS supply registered return 0\n");
 		}
-	return chrg_current;
+	return 2000;
 }
 
 static int smb358_get_prop_charge_type(struct smb358_charger *chip)
